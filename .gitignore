@@ -1,0 +1,11 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+# Fotos originais (podem ser grandes ou privadas). Publique só as otimizadas.
+imagens-originais/
+.env
+.env.*
+.DS_Store
+*.tmp.*
+imagens-local/

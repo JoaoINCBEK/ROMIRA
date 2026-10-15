@@ -1,0 +1,41 @@
+{
+  "name": "romira-landing",
+  "version": "1.0.0",
+  "description": "Landing page da Romira Bronze e Eventos",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "test": "playwright test",
+    "test:instalar": "playwright install chromium",
+    "logo": "node scripts/gerar-logo.mjs",
+    "cidade": "node scripts/gerar-cidade.mjs",
+    "imagens": "node scripts/otimizar-imagens.mjs",
+    "chegada": "node scripts/preparar-chegada.mjs",
+    "compartilhamento": "node scripts/gerar-compartilhamento.mjs",
+    "ilustracoes": "node scripts/gerar-ilustracoes.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@fontsource/playfair-display": "^5.3.0",
+    "@maplibre/maplibre-gl-style-spec": "24.10.0",
+    "@playwright/test": "1.56.1",
+    "geojson-vt": "^5.0.4",
+    "lucide-static": "^1.55.0",
+    "opentype.js": "^2.0.0",
+    "sharp": "^0.35.5",
+    "vite": "^6.4.4",
+    "vt-pbf": "^3.1.3"
+  },
+  "dependencies": {
+    "maplibre-gl": "^5.24.0"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}
