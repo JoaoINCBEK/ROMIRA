@@ -111,7 +111,7 @@ export const site = {
   // Endereço público definitivo do site, sem barra no final.
   // Ex.: 'https://romira.pages.dev' ou 'https://www.romira.com.br'.
   // Enquanto vazio, o site funciona normalmente, mas sem URL canônica/sitemap.
-  url: '',
+  url: 'https://romira.pages.dev',
   titulo: 'Romira Bronze e Eventos | Espaço de lazer com piscina em Fortaleza',
   descricao:
     'Espaço de lazer com piscina e churrasqueira para aniversários, encontros familiares e pequenas comemorações no Boa Vista-Castelão, em Fortaleza (CE). Consulte disponibilidade pelo WhatsApp.',
