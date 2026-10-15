@@ -72,7 +72,7 @@ export const localizacao = {
 //  `foco`: ponto (em % da foto) para onde a câmera se aproxima.
 // ----------------------------------------------------------------------------
 export const chegada = {
-  fotosAutorizadas: false,
+  fotosAutorizadas: true, // autorizado pelo dono do site em 15/10/2026, ciente dos termos do Google
   etapas: [
     {
       arquivo: 'aerea',

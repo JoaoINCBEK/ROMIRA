@@ -164,16 +164,16 @@ for (const largura of [320, 360, 390, 414, 768, 1024, 1280, 1920]) {
 test('aproximação aérea começa sozinha, em loop, sem controles de demonstração', async ({ page }) => {
   await page.goto('/');
   const aereo = page.locator('[data-aereo]');
-  // sem foto aérea autorizada, o site publicado usa a ilustração identificada
-  await expect(aereo).toHaveAttribute('data-fonte', 'ilustracao');
-  await expect(page.locator('[data-aereo-legenda]')).toHaveText('Conheça a região do nosso espaço. Ilustração artística.');
+  // com as fotos autorizadas, o site publicado mostra o percurso aérea → rua → fachada
+  await expect(aereo).toHaveAttribute('data-fonte', 'fotos');
+  await expect(page.locator('[data-aereo-legenda]')).toHaveText('Conheça a região do nosso espaço.');
   await expect(page.locator('[data-aereo-repetir], .chegada__progresso, .chegada__previa, [data-aereo-marcador]')).toHaveCount(0);
   await expect(page.locator('[data-aereo]')).not.toContainText(/Repetir|Prévia local|posição exata|aproximad/i);
 
-  const camera = page.locator('.aereo__tela');
-  await expect(camera).toHaveCSS('animation-name', 'camera-cena');
+  const camera = page.locator('[data-camada="aerea"] .percurso__foto');
+  await expect(camera).toHaveCSS('animation-name', 'camera-aerea');
   await expect(camera).toHaveCSS('animation-iteration-count', 'infinite');
-  await expect(camera).toHaveCSS('animation-duration', '10s');
+  await expect(camera).toHaveCSS('animation-duration', '19s');
   await expect(camera).toHaveCSS('animation-play-state', 'paused'); // fora da tela
 
   await aereo.scrollIntoViewIfNeeded();
@@ -210,7 +210,8 @@ test('com movimento reduzido, a imagem aérea fica estática', async ({ page }) 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await page.locator('[data-aereo]').scrollIntoViewIfNeeded();
-  await expect(page.locator('.aereo__tela')).toHaveCSS('animation-name', 'none');
+  await expect(page.locator('[data-camada="aerea"] .percurso__foto')).toHaveCSS('animation-name', 'none');
+  await expect(page.locator('[data-camada="fachada"]')).toHaveCSS('opacity', '1');
   await expect(page.locator('a[data-maps="regiao"]')).toBeVisible();
 });
 
@@ -237,11 +238,12 @@ test('imagens ilustrativas estão identificadas', async ({ page }) => {
   await expect(page.getByText('Imagens ilustrativas. Em breve, fotos reais do espaço.')).toBeVisible();
 });
 
-test('fotos de referência da chegada não entram no site publicado', async ({ page, request }) => {
+test('as três fotos do percurso são publicadas', async ({ page, request }) => {
   await page.goto('/');
-  // Sem fotos próprias/autorizadas: nenhum quadro de foto nem prévia
-  await expect(page.locator('[data-chegada], .chegada__previa, [data-segmento]')).toHaveCount(0);
-  expect(await page.content()).not.toContain('/imagens/chegada/');
-  const resposta = await request.get('/imagens/chegada/fachada-800.webp');
-  expect(resposta.headers()['content-type'] || '').not.toContain('image/webp');
+  await expect(page.locator('[data-camada]')).toHaveCount(3);
+  await expect(page.locator('.chegada__previa, [data-segmento]')).toHaveCount(0);
+  for (const arquivo of ['aerea-1600', 'rua-1576', 'fachada-1562']) {
+    const resposta = await request.get(`/imagens/chegada/${arquivo}.webp`);
+    expect(resposta.headers()['content-type']).toContain('image/webp');
+  }
 });

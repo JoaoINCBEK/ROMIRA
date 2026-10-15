@@ -1,0 +1,26 @@
+{
+  "aerea": {
+    "largura": 1747,
+    "altura": 900,
+    "larguras": [
+      800,
+      1600
+    ]
+  },
+  "rua": {
+    "largura": 1576,
+    "altura": 998,
+    "larguras": [
+      800,
+      1576
+    ]
+  },
+  "fachada": {
+    "largura": 1562,
+    "altura": 1007,
+    "larguras": [
+      800,
+      1562
+    ]
+  }
+}
