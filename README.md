@@ -1,6 +1,6 @@
-# Romira Bronze e Eventos — landing page
+# Romira Balões e Eventos — landing page
 
-Site de uma página da **Romira Bronze e Eventos** (Fortaleza, CE). O objetivo principal é levar o visitante a conversar pelo WhatsApp para consultar disponibilidade, valores e reservar.
+Site de uma página da **Romira Balões e Eventos** (Fortaleza, CE). O objetivo principal é levar o visitante a conversar pelo WhatsApp para consultar disponibilidade, valores e reservar.
 
 > “Seu momento de lazer começa aqui.”
 
@@ -25,19 +25,19 @@ Site de uma página da **Romira Bronze e Eventos** (Fortaleza, CE). O objetivo p
 
 | Seção | Conteúdo |
 | --- | --- |
-| Cabeçalho fixo | Logotipo, menu (Início, O Espaço, Bronzeamento, Localização) e botão “Reservar pelo WhatsApp”. No celular, fica sempre visível ao rolar, com botão “Reservar” e menu compacto. |
+| Cabeçalho fixo | Logotipo, menu (Início, O Espaço, Balões, Localização) e botão “Reservar pelo WhatsApp”. No celular, fica sempre visível ao rolar, com botão “Reservar” e menu compacto. |
 | Abertura | Título, slogan, texto curto e botão principal de reserva. |
 | Onde estamos | Imagem aérea da região com aproximação automática em loop e cartão com “Como chegar”. |
 | O Espaço | Apresentação curta. |
 | Estrutura | Piscina, churrasqueira, mesas e cadeiras, área coberta, banheiros, cozinha/pia, espaço para música e ambiente familiar. |
 | Ocasiões | Aniversários, encontros familiares, reuniões entre amigos. |
 | Galeria | Grade com ampliação da imagem (pronta para fotos reais). |
-| Bronzeamento | Serviço secundário, com botão próprio para o WhatsApp. |
+| Balões | Balões personalizados para aniversários e festas, com fotos reais e botão próprio para o WhatsApp (“Pedir orçamento de balões”). O bronzeamento está em standby: para voltar, mude `textos.bronzeamento.ativo` para `true` e devolva o item no menu (`navegacao`). |
 | Depoimentos | **Desativada.** Só aparece quando houver depoimentos reais cadastrados. |
 | Localização e contato | Endereço, “Como chegar” (Google Maps), WhatsApp e Instagram. |
 | Rodapé | Logotipo, nome, endereço, contatos e slogan. |
 
-Os botões “Reservar pelo WhatsApp” ficam só no cabeçalho e na abertura. O bronzeamento tem o seu próprio “Saber mais”, e o contato e o rodapé mostram o número do WhatsApp.
+Os botões “Reservar pelo WhatsApp” ficam só no cabeçalho e na abertura. Os balões têm o seu próprio “Pedir orçamento”, e o contato e o rodapé mostram o número do WhatsApp.
 
 **O que o site não inventa:** preços, horários, promoções, avaliações, depoimentos, coordenadas não verificadas ou serviços não confirmados (decoração, buffet etc.). As imagens atuais são **ilustrações** e estão marcadas como “Imagem ilustrativa”.
 

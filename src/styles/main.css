@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Romira Bronze e Eventos — estilos
+   Romira Balões e Eventos — estilos
    Paleta, tipografia e espaçamentos ficam nas variáveis abaixo (:root).
    ========================================================================== */
 @import '@fontsource/playfair-display/latin-400.css';
@@ -613,8 +613,11 @@ button { font: inherit; color: inherit; }
   background: radial-gradient(circle, rgba(201, 154, 99, 0.22), transparent 65%); pointer-events: none;
 }
 .bronze__grade { display: grid; gap: 40px; align-items: center; position: relative; }
-.bronze__midia { position: relative; border-radius: var(--raio); overflow: hidden; aspect-ratio: 5 / 4; }
-.bronze__midia img { width: 100%; height: 100%; object-fit: cover; }
+.bronze__midia { display: grid; gap: 14px; }
+.bronze__midia figure { position: relative; border-radius: var(--raio); overflow: hidden; aspect-ratio: 5 / 4; }
+.bronze__midia--duas { grid-template-columns: 1fr 1fr; }
+.bronze__midia--duas figure { aspect-ratio: 1; }
+.bronze__midia img { width: 100%; height: 100%; object-fit: cover; object-position: var(--posicao, 50% 50%); }
 .bronze__icone { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(220, 185, 140, 0.45); color: var(--bronze-300); margin-bottom: 24px; }
 .bronze__icone .icone { width: 26px; height: 26px; }
 .bronze .titulo-secao { color: var(--creme); margin-bottom: 20px; }

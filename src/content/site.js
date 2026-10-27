@@ -1,12 +1,12 @@
 // ============================================================================
-//  CONTEÚDO DO SITE — ROMIRA BRONZE E EVENTOS
+//  CONTEÚDO DO SITE — ROMIRA BALÕES E EVENTOS
 //  Edite aqui textos, contatos, links e imagens. Não é preciso mexer no
 //  restante do código para alterar o que aparece na página.
 //  Dica: mantenha as aspas e as vírgulas no final de cada linha.
 // ============================================================================
 
 export const negocio = {
-  nome: 'Romira Bronze e Eventos',
+  nome: 'Romira Balões e Eventos',
   nomeCurto: 'Romira',
   slogan: 'Seu momento de lazer começa aqui.',
   // Endereço oficial informado pela Romira
@@ -27,7 +27,10 @@ export const negocio = {
     exibicao: '(85) 98974-2714',
     mensagens: {
       reserva:
-        'Olá! Gostaria de consultar a disponibilidade da Romira Bronze e Eventos para realizar um evento.',
+        'Olá! Gostaria de consultar a disponibilidade da Romira Balões e Eventos para realizar um evento.',
+      baloes:
+        'Olá! Gostaria de um orçamento de balões personalizados com a Romira.',
+      // Bronzeamento em standby (veja textos.bronzeamento)
       bronzeamento:
         'Olá! Gostaria de mais informações sobre o bronzeamento natural da Romira.',
     },
@@ -112,16 +115,17 @@ export const site = {
   // Ex.: 'https://romira.pages.dev' ou 'https://www.romira.com.br'.
   // Enquanto vazio, o site funciona normalmente, mas sem URL canônica/sitemap.
   url: 'https://romira.pages.dev',
-  titulo: 'Romira Bronze e Eventos | Espaço de lazer com piscina em Fortaleza',
+  titulo: 'Romira Balões e Eventos | Espaço para festas e balões personalizados em Fortaleza',
   descricao:
-    'Espaço de lazer com piscina e churrasqueira para aniversários, encontros familiares e pequenas comemorações no Boa Vista-Castelão, em Fortaleza (CE). Consulte disponibilidade pelo WhatsApp.',
+    'Espaço de lazer com piscina e churrasqueira para aniversários, encontros familiares e pequenas comemorações no Boa Vista-Castelão, em Fortaleza (CE), e balões personalizados para festas. Consulte pelo WhatsApp.',
   imagemCompartilhamento: '/imagens/compartilhamento.jpg',
 };
 
 export const navegacao = [
   { rotulo: 'Início', alvo: 'inicio' },
   { rotulo: 'O Espaço', alvo: 'espaco' },
-  { rotulo: 'Bronzeamento', alvo: 'bronzeamento' },
+  // Bronzeamento em standby: para voltar, troque por { rotulo: 'Bronzeamento', alvo: 'bronzeamento' }
+  { rotulo: 'Balões', alvo: 'baloes' },
   { rotulo: 'Localização', alvo: 'localizacao' },
 ];
 
@@ -254,15 +258,29 @@ export const textos = {
       { imagem: 'familia', titulo: 'Encontros familiares', texto: 'Reúna a família para um dia de piscina e conversa boa.' },
       { imagem: 'amigos', titulo: 'Reuniões entre amigos', texto: 'Churrasco, música e a turma toda junta.' },
     ],
-    // Fotos extras, exibidas abaixo dos cartões (sem texto)
-    fotos: ['ocasiaoPaizao', 'ocasiao76Anos'],
   },
   galeria: {
     sobretitulo: 'Galeria',
     titulo: 'Inspire-se para o seu dia.',
     aviso: 'Imagens ilustrativas. Em breve, fotos reais do espaço.',
   },
+  // Balões personalizados: segundo serviço da Romira (fotos reais em imagens.ocasiaoPaizao/ocasiao76Anos)
+  baloes: {
+    ativo: true,
+    icone: 'balao',
+    imagens: ['ocasiaoPaizao', 'ocasiao76Anos'],
+    sobretitulo: 'Balões personalizados',
+    titulo: 'Balões com a cara da sua festa.',
+    texto:
+      'Além do espaço para eventos, a Romira personaliza balões para aniversários e festas. Conte sua ideia pelo WhatsApp e peça um orçamento.',
+    cta: 'Pedir orçamento de balões',
+  },
+  // STANDBY: o bronzeamento ainda é uma ideia. Para voltar a exibir, mude ativo para true
+  // e devolva o item “Bronzeamento” em navegacao.
   bronzeamento: {
+    ativo: false,
+    icone: 'sol',
+    imagens: ['bronzeamento'],
     sobretitulo: 'Também na Romira',
     titulo: 'Bronzeamento natural.',
     texto:

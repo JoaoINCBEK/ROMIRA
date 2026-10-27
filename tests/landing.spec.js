@@ -3,7 +3,7 @@ import { negocio } from '../src/content/site.js';
 import { bloquearMapa } from './mapa-falso.js';
 
 const NUMERO = '5585989742714';
-const MSG_RESERVA = 'Olá! Gostaria de consultar a disponibilidade da Romira Bronze e Eventos para realizar um evento.';
+const MSG_RESERVA = 'Olá! Gostaria de consultar a disponibilidade da Romira Balões e Eventos para realizar um evento.';
 const ehMovel = (testInfo) => testInfo.project.name !== 'desktop';
 
 test.beforeEach(async ({ page }) => {
@@ -14,7 +14,7 @@ test('carrega sem erros de JavaScript e com SEO básico', async ({ page }) => {
   const erros = [];
   page.on('pageerror', (e) => erros.push(e.message));
   await page.goto('/');
-  await expect(page).toHaveTitle(/Romira Bronze e Eventos/);
+  await expect(page).toHaveTitle(/Romira Balões e Eventos/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Fortaleza/);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /compartilhamento\.jpg/);
@@ -50,7 +50,7 @@ test('todos os links de WhatsApp abrem a conversa certa com mensagem codificada'
     expect(url.origin + url.pathname).toBe(`https://wa.me/${NUMERO}`);
     const texto = url.searchParams.get('text');
     const tipo = await links.nth(i).getAttribute('data-whatsapp');
-    if (tipo === 'bronzeamento') expect(texto).toContain('bronzeamento natural');
+    if (tipo === 'baloes') expect(texto).toContain('balões personalizados');
     else expect(texto).toBe(MSG_RESERVA);
     expect(href).not.toContain(' '); // codificação correta
     await expect(links.nth(i)).toHaveAttribute('target', '_blank');
@@ -88,7 +88,7 @@ test('não há depoimentos, avaliações ou preços inventados', async ({ page }
 
 test('navegação do menu leva às seções', async ({ page }, testInfo) => {
   await page.goto('/');
-  const alvos = ['espaco', 'bronzeamento', 'localizacao', 'inicio'];
+  const alvos = ['espaco', 'baloes', 'localizacao', 'inicio'];
   for (const alvo of alvos) {
     if (ehMovel(testInfo)) {
       const botao = page.locator('[data-menu-botao]');
@@ -230,9 +230,9 @@ test('galeria abre a imagem ampliada e fecha com Esc', async ({ page }) => {
 test('imagens ilustrativas estão identificadas', async ({ page }) => {
   await page.goto('/');
   expect(await page.locator('.selo-ilustrativo').count()).toBeGreaterThanOrEqual(2);
-  // Ocasiões usa fotos reais: sem selo de ilustração e com as 5 fotos otimizadas
+  // Ocasiões e Balões usam fotos reais: sem selo de ilustração e com as 5 fotos otimizadas
   await expect(page.locator('#ocasioes .selo-ilustrativo')).toHaveCount(0);
-  const fotos = await page.locator('#ocasioes img').evaluateAll((is) => is.map((i) => i.getAttribute('src')));
+  const fotos = await page.locator('#ocasioes img, #baloes img').evaluateAll((is) => is.map((i) => i.getAttribute('src')));
   expect(fotos).toHaveLength(5);
   for (const src of fotos) expect(src).toMatch(/^\/imagens\/fotos\/ocasiao-.+\.webp$/);
   await expect(page.getByText('Imagens ilustrativas. Em breve, fotos reais do espaço.')).toBeVisible();
@@ -246,4 +246,12 @@ test('as três fotos do percurso são publicadas', async ({ page, request }) => 
     const resposta = await request.get(`/imagens/chegada/${arquivo}.webp`);
     expect(resposta.headers()['content-type']).toContain('image/webp');
   }
+});
+
+test('bronzeamento fica em standby e os balões aparecem no menu', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#bronzeamento')).toHaveCount(0);
+  expect(await page.locator('body').innerText()).not.toMatch(/bronzeamento/i);
+  await expect(page.locator('#baloes img')).toHaveCount(2);
+  await expect(page.locator('a[data-whatsapp="baloes"]')).toHaveText(/orçamento de balões/);
 });

@@ -282,18 +282,24 @@ function galeriaSecao() {
 </section>`;
 }
 
-function bronzeamento() {
-  const t = textos.bronzeamento;
+// Seção de serviço (balões, bronzeamento) com o próprio botão de WhatsApp; some com ativo: false
+function servico(chave) {
+  const t = textos[chave];
+  if (!t.ativo) return '';
+  const fotos = t.imagens.map((nome) => imagens[nome]);
+  const sizes = fotos.length > 1 ? '(min-width: 960px) 22vw, 45vw' : '(min-width: 960px) 40vw, 90vw';
   return `
-<section class="bronze secao" id="bronzeamento" aria-labelledby="bronze-titulo">
+<section class="bronze secao" id="${chave}" aria-labelledby="${chave}-titulo">
   <div class="container bronze__grade">
-    <figure class="bronze__midia revelar">${imagem(imagens.bronzeamento, { sizes: '(min-width: 960px) 40vw, 90vw' })}${seloIlustrativo(imagens.bronzeamento)}</figure>
+    <div class="bronze__midia${fotos.length > 1 ? ' bronze__midia--duas' : ''} revelar">${fotos
+      .map((img) => `<figure${posicao(img)}>${imagem(img, { sizes })}${seloIlustrativo(img)}</figure>`)
+      .join('')}</div>
     <div class="bronze__texto revelar">
-      <span class="bronze__icone">${icone('sol')}</span>
+      <span class="bronze__icone">${icone(t.icone)}</span>
       ${sobretitulo(t.sobretitulo).replace('sobretitulo', 'sobretitulo sobretitulo--claro')}
-      <h2 id="bronze-titulo" class="titulo-secao">${esc(t.titulo)}</h2>
+      <h2 id="${chave}-titulo" class="titulo-secao">${esc(t.titulo)}</h2>
       <p>${esc(t.texto)}</p>
-      ${botaoWhatsApp(t.cta, { tipo: 'bronzeamento', classe: 'botao botao--contorno', evento: 'bronzeamento' })}
+      ${botaoWhatsApp(t.cta, { tipo: chave, classe: 'botao botao--contorno', evento: chave })}
     </div>
   </div>
 </section>`;
@@ -390,7 +396,8 @@ ${espaco()}
 ${comodidades()}
 ${ocasioes()}
 ${galeriaSecao()}
-${bronzeamento()}
+${servico('baloes')}
+${servico('bronzeamento')}
 ${depoimentos()}
 ${contato()}
 </main>

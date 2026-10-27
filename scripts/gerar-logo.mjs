@@ -58,7 +58,7 @@ function textoEmCurvas(font, texto, tamanho, tracking) {
 
 // Assinatura legível: fonte maior, espaçada para ocupar a mesma largura de ROMIRA
 function assinaturaNaLargura(tamanho, largura) {
-  const texto = 'BRONZE E EVENTOS';
+  const texto = 'BALÕES E EVENTOS';
   const semEspaco = textoEmCurvas(fontAssinatura, texto, tamanho, 0);
   const tracking = Math.max(1, (largura - semEspaco.largura) / (texto.length - 1));
   return textoEmCurvas(fontAssinatura, texto, tamanho, tracking);
@@ -70,8 +70,8 @@ function horizontal(cores) {
   const xTexto = 74;
   const largura = Math.ceil(xTexto + Math.max(titulo.largura, assinatura.largura) + 4);
   const xAss = xTexto + (titulo.largura - assinatura.largura) / 2;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${largura} 72" role="img" aria-label="Romira Bronze e Eventos">
-  <title>Romira Bronze e Eventos</title>
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${largura} 72" role="img" aria-label="Romira Balões e Eventos">
+  <title>Romira Balões e Eventos</title>
   <g transform="translate(0 4)">${simbolo(cores.simbolo)}</g>
   <path transform="translate(${xTexto} 42)" fill="${cores.texto}" fill-rule="evenodd" d="${titulo.d}"/>
   <path transform="translate(${xAss.toFixed(2)} 67)" fill="${cores.assinatura}" fill-rule="evenodd" d="${assinatura.d}"/>
@@ -84,8 +84,8 @@ function vertical(cores) {
   const assinatura = assinaturaNaLargura(19, titulo.largura);
   const largura = Math.ceil(Math.max(titulo.largura, assinatura.largura) + 8);
   const cx = largura / 2;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${largura} 172" role="img" aria-label="Romira Bronze e Eventos">
-  <title>Romira Bronze e Eventos</title>
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${largura} 172" role="img" aria-label="Romira Balões e Eventos">
+  <title>Romira Balões e Eventos</title>
   <g transform="translate(${(cx - 40).toFixed(2)} 0) scale(1.25)">${simbolo(cores.simbolo)}</g>
   <path transform="translate(${(cx - titulo.largura / 2).toFixed(2)} 134)" fill="${cores.texto}" fill-rule="evenodd" d="${titulo.d}"/>
   <path transform="translate(${(cx - assinatura.largura / 2).toFixed(2)} 164)" fill="${cores.assinatura}" fill-rule="evenodd" d="${assinatura.d}"/>

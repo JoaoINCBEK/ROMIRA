@@ -2,6 +2,7 @@
 // e o ícone para iPhone (apple-touch-icon). Uso: npm run compartilhamento
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import opentype from 'opentype.js';
 
@@ -48,7 +49,7 @@ await sharp(fundo)
     { input: logo, left: 90, top: Math.round(270 - meta.height / 2) },
   ])
   .jpeg({ quality: 84, mozjpeg: true })
-  .toFile(new URL('public/imagens/compartilhamento.jpg', raiz).pathname);
+  .toFile(fileURLToPath(new URL('public/imagens/compartilhamento.jpg', raiz)));
 
-await sharp(ler('public/favicon.svg'), { density: 300 }).resize(180, 180).png().toFile(new URL('public/apple-touch-icon.png', raiz).pathname);
+await sharp(ler('public/favicon.svg'), { density: 300 }).resize(180, 180).png().toFile(fileURLToPath(new URL('public/apple-touch-icon.png', raiz)));
 console.log('Gerados: public/imagens/compartilhamento.jpg e public/apple-touch-icon.png');
